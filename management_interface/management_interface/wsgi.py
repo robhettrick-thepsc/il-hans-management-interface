@@ -1,5 +1,5 @@
 """
-WSGI config for hans_subscriber project.
+WSGI config for management_interface project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'hans_subscriber.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'management_interface.settings')
 
 application = get_wsgi_application()
