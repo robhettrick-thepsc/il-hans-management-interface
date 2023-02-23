@@ -1,14 +1,17 @@
-FROM python:3.10.2-slim-bullseye
+FROM python:3.10-slim-buster
+
+EXPOSE 8000
 
 ENV PIP_DISABLE_PIP_VERSION_CHECK 1
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
+ENV DEBIAN_FRONTEND noninteractive
 
-WORKDIR /management_interface
+RUN pip install --no-cache-dir --upgrade pip
+RUN pip install gunicorn==20.1.0
 
-# Install dependencies
 COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
-# Copy project
+WORKDIR /management_interface
 COPY . .
