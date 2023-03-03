@@ -4,7 +4,9 @@ services:
     build: .
     ports:
       - "8000:8000"
-    command: python management_interface/manage.py runserver 0.0.0.0:8000
+    # probably a hack: createsuperuser would fail if issued on existing DB (as the user already exists)
+    # so to allow build command to finish and run the container, we force to ignore the error
+    command: sh -c "python management_interface/manage.py migrate && python management_interface/manage.py createsuperuser --noinput || true && python management_interface/manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/app
     depends_on:
@@ -17,6 +19,8 @@ services:
       - postgres_data:/var/lib/postgresql/data/
     environment:
       - "POSTGRES_HOST_AUTH_METHOD=trust"
+      - "POSTGRES_USER: postgres"
+      - "POSTGRES_PASSWORD: postgres"
 
 volumes:
   postgres_data:
