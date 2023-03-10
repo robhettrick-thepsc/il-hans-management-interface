@@ -1,6 +1,6 @@
 from django import forms
-from .models import CareProviderLocation, RegisteredManager, CareRecipient
-from .utils import validated_email_domain
+
+from .models import CareProviderLocation, CareRecipient, RegisteredManager
 
 
 class CareProviderLocationForm(forms.ModelForm):
@@ -8,26 +8,20 @@ class CareProviderLocationForm(forms.ModelForm):
         model = CareProviderLocation
         exclude = ["id", "created_at", "updated_at"]
 
-    def clean_email(self):
-        email = self.cleaned_data["email"]
-        return validated_email_domain(email=email,
-                                      domain="nhs.net",
-                                      error_message="Care provider e-mail has to be in NHS.net domain")
-
 
 class RegisteredManagerForm(forms.ModelForm):
     class Meta:
         model = RegisteredManager
         exclude = ["id", "created_at", "updated_at"]
-
-    def clean_email(self):
-        email = self.cleaned_data["email"]
-        return validated_email_domain(email=email,
-                                      domain="nhs.net",
-                                      error_message="Registered manager e-mail has to be in NHS.net domain")
+        labels = {
+            "cqc_registered_manager_id": "CQC Registered Manager ID",
+        }
 
 
 class CareRecipientForm(forms.ModelForm):
     class Meta:
         model = CareRecipient
         exclude = ["id", "created_at", "updated_at"]
+        labels = {
+            "nhs_number": "NHS Number",
+        }
