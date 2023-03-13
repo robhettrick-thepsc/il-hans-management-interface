@@ -11,7 +11,7 @@ class SecureEmailValidator(EmailValidator):
     message = "Enter an nhs.net email address"
 
     def __init__(self, **kwargs):
-        super().__init__(**kwargs, allowlist=["nhs.net", "thepsc.co.uk"])
+        super().__init__(**kwargs, allowlist=["nhs.net"])
 
     def validate_domain_part(self, _):
         return False
@@ -29,10 +29,10 @@ class BaseModel(models.Model):
     created_at = models.DateTimeField(default=timezone.now, editable=False)
     updated_at = models.DateTimeField(auto_now=True, editable=False)
     created_by = models.ForeignKey(
-        User, on_delete=models.CASCADE, null=True, editable=False, related_name="%(app_label)s_%(class)s_created_by"
+        User, on_delete=models.SET_NULL, null=True, editable=False, related_name="%(app_label)s_%(class)s_created_by"
     )
     updated_by = models.ForeignKey(
-        User, on_delete=models.CASCADE, null=True, editable=False, related_name="%(app_label)s_%(class)s_updated_by"
+        User, on_delete=models.SET_NULL, null=True, editable=False, related_name="%(app_label)s_%(class)s_updated_by"
     )
 
 
