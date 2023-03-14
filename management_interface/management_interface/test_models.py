@@ -1,11 +1,7 @@
 from django.core.exceptions import ValidationError
 from django.test import TestCase
 
-from management_interface.models import (
-    CareProviderLocation,
-    CareRecipient,
-    RegisteredManager,
-)
+from .models import CareProviderLocation, CareRecipient, RegisteredManager
 
 
 def assert_rejects_email(obj, email):
