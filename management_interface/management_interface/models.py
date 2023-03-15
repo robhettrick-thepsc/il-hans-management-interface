@@ -49,6 +49,9 @@ class CareProviderLocation(BaseModel):
     cqc_location_id = models.CharField(null=False, max_length=128, unique=True, help_text="1-110XXXXXXXX")
     registered_manager = models.ForeignKey("RegisteredManager", on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f"{self.name}"
+
     def clean(self):
         self.email = str(self.email).strip()
 
@@ -64,6 +67,9 @@ class RegisteredManager(BaseModel):
         null=False, db_index=True, unique=True, help_text="example@nhs.net", validators=[SecureEmailValidator()]
     )
     cqc_registered_manager_id = models.CharField(max_length=128, help_text="1-XXXXXXXX")
+
+    def __str__(self):
+        return f"{self.given_name} {self.family_name} ({self.cqc_registered_manager_id})"
 
     def clean(self):
         self.email = str(self.email).strip()
@@ -84,6 +90,9 @@ class CareRecipient(BaseModel):
         null=False, max_length=128, db_index=True, unique=True, help_text="XXX12345678"
     )
     nhs_number = models.CharField(null=True, blank=True, max_length=32)
+
+    def __str__(self):
+        return f'"{self.provider_reference_id}" ({self.care_provider_location})'
 
     def clean(self):
         # to be replaced by Scrypt
