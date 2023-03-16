@@ -69,7 +69,7 @@ class RegisteredManager(BaseModel):
     cqc_registered_manager_id = models.CharField(max_length=128, help_text="1-XXXXXXXX")
 
     def __str__(self):
-        return f"{self.given_name} {self.family_name} ({self.cqc_registered_manager_id})"
+        return f"{self.family_name}, {self.given_name} ({self.cqc_registered_manager_id})"
 
     def clean(self):
         self.email = str(self.email).strip()
