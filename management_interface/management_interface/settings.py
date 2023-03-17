@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 import os
 from pathlib import Path
-
 from .configuration import SETTINGS
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -72,6 +71,10 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "management_interface.wsgi.application"
+
+# CSRF
+
+CSRF_TRUSTED_ORIGINS = [ SETTINGS.CSRF_TRUSTED_ORIGINS ]
 
 
 # Database
