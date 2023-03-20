@@ -42,7 +42,7 @@ def care_provider_search(request):
 
     # if not allowed method was used on this endpoint
     operation_outcome_issue = OperationOutcomeIssue(
-        severity="error", code="not-allowed", diagnostics="Method not allowed"
+        severity="error", code="not-allowed", diagnostics="Method not allowed - _search only supports POST"
     )
     operation_outcome = OperationOutcome(issue=[operation_outcome_issue])
     return JsonResponse(json.loads(operation_outcome.json()), status=HTTPStatus.METHOD_NOT_ALLOWED)
