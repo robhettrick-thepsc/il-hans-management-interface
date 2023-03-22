@@ -41,6 +41,6 @@ class CareProviderLocationTests(TestCase):
         self.assertFailure(response, HTTPStatus.NOT_FOUND, "not-found")
 
     def test_car_care_provider_location_search_bad_request(self):
-        url_ = reverse("care_provider_search")
+        url = reverse("care_provider_search")
         response = self.client.post(url_, {"_invalid_query_parameter": "not_existing_id"})
         self.assertFailure(response, HTTPStatus.BAD_REQUEST, "required")
