@@ -33,7 +33,7 @@ class CareProviderLocationTests(TestCase):
         url = reverse("care_provider_search")
         response = self.client.post(url_, {"_careRecipientPseudoId": self.care_recipient.nhs_number_hash})
         self.assertEqual(response.status_code, HTTPStatus.OK)
-        self.assertEqual(json.loads(response.content)["name"], self.location.name)
+        self.assertEqual(response.json()["name"], self.location.name)
 
     def test_search_not_found(self):
         url_ = reverse("care_provider_search")
