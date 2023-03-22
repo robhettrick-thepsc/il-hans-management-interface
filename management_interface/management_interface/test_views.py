@@ -45,5 +45,4 @@ class CareProviderLocationTests(TestCase):
     def test_car_care_provider_location_search_bad_request(self):
         url_ = reverse("care_provider_search")
         response = self.client.post(url_, {"_invalid_query_parameter": "not_existing_id"})
-        self.assertEqual(response.status_code, HTTPStatus.BAD_REQUEST)
-        self.assertEqual(json.loads(response.content)["issue"][0]["code"], "required")
+        self.assertFailure(response, HTTPStatus.BAD_REQUEST, "required")
