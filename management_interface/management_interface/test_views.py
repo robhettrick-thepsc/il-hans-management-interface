@@ -36,7 +36,7 @@ class CareProviderLocationTests(TestCase):
         self.assertEqual(response.json()["name"], self.location.name)
 
     def test_search_not_found(self):
-        url_ = reverse("care_provider_search")
+        url = reverse("care_provider_search")
         response = self.client.post(url_, {"_careRecipientPseudoId": "not_existing_id"})
         self.assertFailure(response, HTTPStatus.NOT_FOUND, "not-found")
 
