@@ -24,7 +24,7 @@ class CareProviderLocationTests(TestCase):
         self.care_recipient.nhs_number = "password"
         self.care_recipient.save()
 
-    def test_car_care_provider_location_search_not_allowed(self):
+    def test_search_get_method_not_allowed(self):
         url_ = reverse("care_provider_search")
         response = self.client.get(url_, {"_careRecipientPseudoId": self.care_recipient.nhs_number_hash})
         self.assertEqual(response.status_code, HTTPStatus.METHOD_NOT_ALLOWED)
