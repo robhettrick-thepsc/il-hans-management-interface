@@ -23,7 +23,9 @@ class CareProviderLocationTests(TestCase):
         )
         self.care_recipient.nhs_number = "password"
         self.care_recipient.save()
-
+    def assertFailure(self, response, expected_status_code, expected_code):
+        self.assertEqual(response.status_code, expected_status_code)
+        self.assertEqual(response.json()["issue"][0]["code"], expected_code)
     def test_search_get_method_not_allowed(self):
         url = reverse("care_provider_search")
         response = self.client.get(url, {"_careRecipientPseudoId": self.care_recipient.nhs_number_hash})
