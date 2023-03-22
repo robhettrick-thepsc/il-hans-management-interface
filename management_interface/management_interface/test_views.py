@@ -31,7 +31,7 @@ class CareProviderLocationTests(TestCase):
         self.assertEqual(json.loads(response.content)["issue"][0]["code"], "not-allowed")
 
     def test_successful_search(self):
-        url_ = reverse("care_provider_search")
+        url = reverse("care_provider_search")
         response = self.client.post(url_, {"_careRecipientPseudoId": self.care_recipient.nhs_number_hash})
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertEqual(json.loads(response.content)["name"], self.location.name)
