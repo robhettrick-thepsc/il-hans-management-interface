@@ -14,6 +14,11 @@ services:
       - "DJANGO_SUPERUSER_USERNAME=${DJANGO_SUPERUSER_USERNAME:-admin}"
       - "DJANGO_SUPERUSER_EMAIL=${DJANGO_SUPERUSER_EMAIL:-hans_admin@thepsc.co.uk}"
       - "HANS_MI_DEBUG=${HANS_MI_DEBUG:-TRUE}"
+      - "COGNITO_ENDPOINT=${COGNITO_ENDPOINT:-change_me}"
+      - "COGNITO_CLIENT_ID=${COGNITO_CLIENT_ID:-change_me}"
+      - "COGNITO_CLIENT_SECRET=${COGNITO_CLIENT_SECRET:-change_me}"
+      - "COGNITO_JWKS_URI=${COGNITO_JWKS_URI:-change_me}"
+      - "COGNITO_REDIRECT_URI=${COGNITO_REDIRECT_URI:-change_me}"
     depends_on:
       - db
   db:

@@ -15,6 +15,11 @@ class Settings:
     APP_NAME: str = os.environ.get("APP_NAME", "management_interface")
     DEBUG: bool = bool(os.environ.get("HANS_MI_DEBUG", False))
     CSRF_TRUSTED_ORIGINS: str = os.environ.get("CSRF_TRUSTED_ORIGINS", "http://localhost")
+    COGNITO_ENDPOINT: str = os.environ.get("COGNITO_ENDPOINT", "change_me")
+    COGNITO_CLIENT_ID: str = os.environ.get("COGNITO_CLIENT_ID", "change_me")
+    COGNITO_CLIENT_SECRET: str = os.environ.get("COGNITO_CLIENT_ID", "change_me")
+    COGNITO_JWKS_URI: str = os.environ.get("COGNITO_JWKS_URI", "change_me")
+    COGNITO_REDIRECT_URI: str = os.environ.get("COGNITO_REDIRECT_URI", "change_me")
 
 
 SETTINGS = Settings()

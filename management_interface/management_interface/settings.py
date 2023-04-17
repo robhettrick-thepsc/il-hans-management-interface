@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "management_interface",
+    "django_cognito_saml",
 ]
 
 MIDDLEWARE = [
@@ -48,6 +49,7 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.auth.middleware.RemoteUserMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
@@ -74,7 +76,7 @@ WSGI_APPLICATION = "management_interface.wsgi.application"
 
 # CSRF
 
-CSRF_TRUSTED_ORIGINS = [ SETTINGS.CSRF_TRUSTED_ORIGINS ]
+CSRF_TRUSTED_ORIGINS = [SETTINGS.CSRF_TRUSTED_ORIGINS]
 
 
 # Database
@@ -136,3 +138,16 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Cognito Settings
+AUTHENTICATION_BACKENDS = [
+    "django_cognito_saml.backends.SuperUserBackend",
+]
+
+COGNITO_CONFIG = {
+    "ENDPOINT": SETTINGS.COGNITO_ENDPOINT,
+    "CLIENT_ID": SETTINGS.COGNITO_CLIENT_ID,
+    "CLIENT_SECRET": SETTINGS.COGNITO_CLIENT_SECRET,
+    "JWKS_URI": SETTINGS.COGNITO_JWKS_URI,
+    "REDIRECT_URI": SETTINGS.COGNITO_REDIRECT_URI
+}
