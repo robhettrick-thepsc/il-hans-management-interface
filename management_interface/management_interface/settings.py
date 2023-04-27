@@ -49,7 +49,7 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
-    "django.contrib.auth.middleware.RemoteUserMiddleware",
+    "django.contrib.auth.middleware.PersistentRemoteUserMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
@@ -142,10 +142,11 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Cognito Settings
 AUTHENTICATION_BACKENDS = [
     "django_cognito_saml.backends.SuperUserBackend",
-    "django.contrib.auth.backends.ModelBackend",
 ]
 
-LOGIN_REDIRECT_URL = "/admin/"
+LOGIN_URL = "/saml/login/"
+LOGIN_REDIRECT_URL = "/admin"
+LOGOUT_REDIRECT_URL = None
 
 COGNITO_CONFIG = {
     "ENDPOINT": SETTINGS.COGNITO_ENDPOINT,

@@ -14,7 +14,6 @@ class CustomCognitoBackend(SuperUserBackend):
     def configure_user(  # type: ignore[override]
             self, request: HttpRequest, user: AbstractBaseUser, **kwargs: Any
     ) -> AbstractBaseUser:
-        print("In configure_user")
         if created:
             user.name = self.cognito_jwt["email"]
             user.is_admin = True
