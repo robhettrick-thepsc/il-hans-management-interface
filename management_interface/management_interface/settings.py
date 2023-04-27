@@ -142,7 +142,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Cognito Settings
 AUTHENTICATION_BACKENDS = [
     "django_cognito_saml.backends.SuperUserBackend",
+    "django.contrib.auth.backends.ModelBackend",
 ]
+
+LOGIN_REDIRECT_URL = "/admin/"
 
 COGNITO_CONFIG = {
     "ENDPOINT": SETTINGS.COGNITO_ENDPOINT,

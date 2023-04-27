@@ -10,9 +10,9 @@ services:
     volumes:
       - ./management_interface:/app
     environment:
-      - "DJANGO_SUPERUSER_PASSWORD=${DJANGO_SUPERUSER_PASSWORD:-admin}"
+      - "DJANGO_SUPERUSER_PASSWORD=${DJANGO_SUPERUSER_PASSWORD:-robert}"
       - "DJANGO_SUPERUSER_USERNAME=${DJANGO_SUPERUSER_USERNAME:-admin}"
-      - "DJANGO_SUPERUSER_EMAIL=${DJANGO_SUPERUSER_EMAIL:-hans_admin@thepsc.co.uk}"
+      - "DJANGO_SUPERUSER_EMAIL=${DJANGO_SUPERUSER_EMAIL:-robert.hettrick@thepsc.co.uk}"
       - "HANS_MI_DEBUG=${HANS_MI_DEBUG:-TRUE}"
       - "COGNITO_ENDPOINT=${COGNITO_ENDPOINT:-change_me}"
       - "COGNITO_CLIENT_ID=${COGNITO_CLIENT_ID:-change_me}"
@@ -24,7 +24,7 @@ services:
   db:
     image: postgres:15.2
     ports:
-      - "5433:5432"
+      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
